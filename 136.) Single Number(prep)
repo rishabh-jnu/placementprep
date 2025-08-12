@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        // int size = nums.size();
+        // sort(nums.begin(),nums.end());
+        // int answer = 0;
+    
+        // for(int i=0; i<size; i++)
+        // {
+        //     answer = answer^nums[i];
+        // }
+        // return answer;
+
+        int size = nums.size();
+        sort(nums.begin(), nums.end());
+        int ans;
+        if(size == 1){
+            return nums[0];
+        }
+        for(int i=0; i<size; i=i+2){
+            int temp1 = nums[i+1];
+            int temp2 = nums[i];
+        
+            if(temp1 != temp2){
+                return temp2;
+            }
+        }
+        return nums[size-1];
+    }
+};
