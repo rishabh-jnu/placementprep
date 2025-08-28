@@ -1,0 +1,19 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+
+string findPart(string s, string part){
+    while(s.find(part) != string::npos){
+        s.erase(s.find(part), part.length());
+    }
+    return s;
+}
+int main() {
+    // Write C++ code here
+    string s = "aabcdfgh";
+    string part = "abc";
+    string ans = findPart(s,part);
+    cout<<"Final String is:" <<ans;
+
+    return 0;
+}
