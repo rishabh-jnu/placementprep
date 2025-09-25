@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if(x<0){
+            return false;
+        }
+
+        vector<int>vect;
+        while(x>0){
+            int temp = x%10;
+            vect.push_back(temp);
+            x = x/10;
+        }
+
+        int size = vect.size();
+        int start = 0;
+        int end  = size-1;
+        while(start<=end){
+            if(vect[start]==vect[end]){
+                start++;
+                end--;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
