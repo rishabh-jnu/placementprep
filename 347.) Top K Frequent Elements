@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int, int> freqMap;
+
+        for (int num : nums) {
+            freqMap[num]++;
+        }
+
+        vector<pair<int, int>> freqVec;
+        for (auto& kv : freqMap) {
+            freqVec.push_back({kv.second, kv.first});
+        }
+
+        //for sorting on the basis of first element in des order
+        sort(freqVec.begin(), freqVec.end(), greater<pair<int, int>>()); 
+
+        //for sorting on the basis of second element in des order
+        // sort(freqVec.begin(), freqVec.end(),
+        //      [](const pair<int, int>& a, const pair<int, int>& b) {
+        //          return a.second > b.second;
+        //      });
+
+        vector<int> result;
+        for (int i = 0; i < k && i < freqVec.size(); i++) {
+            result.push_back(freqVec[i].second); // basically it is returning kv.first that is number itself(key)
+        }
+        return result;
+    }
+};
