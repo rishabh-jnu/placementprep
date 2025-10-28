@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int solveUsingMem(int n, vector<int> &dp, vector<int>& coins){
+        //base case
+        if(n==0){
+            return 0;
+        }
+        if(n<0){
+            return INT_MAX;
+        }
+
+        //if ans already exist then return
+        if(dp[n] != -1){
+            return dp[n];
+        }
+
+        //store and return dp
+        int mini = INT_MAX;
+        for (int coin : coins) {
+            int res = solveUsingMem(n - coin, dp, coins);
+            if (res != INT_MAX)
+                mini = min(mini, 1 + res);
+        }
+
+        dp[n] = mini;
+        return dp[n];
+    }
+
+    int coinChange(vector<int>& coins, int amount) {
+        //create dp
+        vector<int> dp(amount+1, -1);
+        int ans = solveUsingMem(amount, dp ,coins);
+        return (ans == INT_MAX) ? -1 : ans;
+    }
+};
+
