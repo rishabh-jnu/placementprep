@@ -1,0 +1,75 @@
+// class Solution {
+// public:
+//     bool canJump(vector<int>& nums) {
+//         int size = nums.size();
+//         int i = 0;
+
+//         while (i < size) {
+//             int temp = nums[i];
+//             if (temp == 0 && i != size - 1) {
+//                 return false;
+//             }
+//             i += temp;
+//             if (i >= size - 1) {
+//                 return true;
+//             }
+//         }
+//         return false;
+//     }
+// };
+
+// class Solution {
+// public:
+//     bool canJump(vector<int>& nums) {
+//         int size = nums.size();
+//         int maxReach = 0;
+
+//         for (int i = 0; i < size; i++) {
+//             if (i > maxReach) {
+//                 return false;
+//             }
+//             maxReach = max(maxReach, i + nums[i]);
+//             if (maxReach >= size - 1) {
+//                 return true;
+//             }
+//         }
+//         return false;
+//     }
+// };
+
+
+
+this is the dp optimise solution using mem
+
+class Solution {
+public:
+    bool solveUsingMem(vector<int>& nums, vector<int>& dp, int i){
+        int size = nums.size();
+        //base case 
+        if(i >= size-1){
+            return true;
+        }
+
+        //if ans then return 
+        if(dp[i] != -1){
+            return dp[i];
+        }
+
+        int maxJump = nums[i];
+        for (int jump = 1; jump <= maxJump; jump++) {
+            if (solveUsingMem(nums, dp, i + jump)) {
+                return dp[i] = true;
+            }
+        }
+        return dp[i] = false;
+    }
+
+    bool canJump(vector<int>& nums) {
+        int n = nums.size();
+        int i = 0;
+        vector<int> dp(n, -1);
+        bool ans = solveUsingMem(nums, dp, i);
+        return ans;
+    }    
+};
+
