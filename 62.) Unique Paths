@@ -1,0 +1,40 @@
+class Solution {
+public:
+    // int solveUsingRec(int i, int j, int m, int n){
+    //     //base case
+    //     if(i>=m || j>=n){
+    //         return 0;
+    //     }
+    //     if(i == m-1 && j == n-1){
+    //         return 1;
+    //     }
+    //     return solveUsingRec(i+1, j, m, n) + solveUsingRec(i, j+1, m, n);
+    // }
+
+    int solveUsingMem(int i, int j, int m, int n, vector<vector<int>>& dp){
+        //base case
+        if(i>=m || j>=n){
+            return 0;
+        }
+        if(i == m-1 && j == n-1){
+            return 1;
+        }
+        //if ans already then return
+        if(dp[i][j] != -1){
+            return dp[i][j];
+        }
+
+        // move down and right rec
+        dp[i][j] = solveUsingMem(i+1, j, m, n, dp) + solveUsingMem(i, j+1, m, n, dp);
+        return dp[i][j];
+    }
+
+    int uniquePaths(int m, int n) {
+        int i=0;
+        int j=0;
+        vector<vector<int>> dp(m, vector<int>(n, -1));
+        int ans = solveUsingMem(i, j, m, n, dp);
+        // int ans = solveUsingRec(i, j, m, n);
+        return ans;
+    }
+};
