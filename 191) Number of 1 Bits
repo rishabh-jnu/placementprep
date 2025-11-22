@@ -1,0 +1,56 @@
+// class Solution {
+// public:
+//     int hammingWeight(int n) {
+//         vector<int>setBit;
+        
+//         while(n>0){
+//             int bit = n%2;
+//             setBit.push_back(bit);
+//             n = n/2;
+//         }
+
+//         long long count =0;
+//         int i=0;
+//         while(i<setBit.size()){
+//             if(setBit[i]==1){
+//                 count++;
+//             }
+//             i++;
+//         }
+//         return count;
+//     }
+// };
+
+
+
+// class Solution {
+// public:
+//     int hammingWeight(uint32_t n) {
+//         int count=0;
+
+//         while(n>0){
+//             if(n & 1){
+//                 count++;
+//             }
+//             n=n>>1;
+//         }
+//         return count;
+//     }
+// };
+
+
+class Solution {
+public:
+    int hammingWeight(uint32_t n) {
+        int count=0;
+
+        while(n>0){
+            int bit = n%2;
+            n = n/2;
+            if(bit == 1){
+                count++;
+            }
+        }
+        return count;
+    }
+};
