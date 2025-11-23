@@ -1,0 +1,21 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if (s.size() != t.size()) 
+            return false;
+
+        for (int i = 0; i < s.size(); i++) 
+        {
+            // int found = t.find(s[i]);
+            if (t.find(s[i]) != string::npos)
+            {
+                t.erase(t.find(s[i]), 1); 
+            }
+            else 
+            {
+                return false;
+            }    
+        }
+        return true;
+    }
+};
